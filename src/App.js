@@ -1,25 +1,36 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Letters from './Letters';
+import Solution from './Solution';
+import Score from './Score';
 
 class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      letterStatus : this.generateLetterStatuses(),
+      solution: {
+        word: "giraffe",
+        hint: "it's a tall animal"
+      },
+      score: 0
+    }
+  }
+  generateLetterStatuses() {
+    let letterStatus = {}
+    for (let i = 65; i < 91; i++) {
+      letterStatus[String.fromCharCode(i)] = false
+    }
+    return letterStatus
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <Score score={this.state.score}/>
+        <Solution letterStatus={this.state.letterStatus} solution={this.state.solution}/>
+        <Letters letterStatus={this.state.letterStatus}/>
+
       </div>
     );
   }
