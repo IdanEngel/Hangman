@@ -2,15 +2,19 @@ import React, { Component } from 'react';
 import Letter from './Letter';
 
 class Letters extends Component {
+   
+
     render() {
         return (
             <div>
-                <Letter />
                 <div>Available Letters:</div>
-                <span>{Object.keys(this.props.letterStatus).map(m => <Letter
+                <span onClick={this.st}>{Object.keys(this.props.letterStatus).map(m => <Letter 
+                scoreMethod={this.props.scoreMethod}
+                endGame={this.props.endGame}
+                 method={this.props.statusChange}
                     letter={this.props.letterStatus[m] === true ?
-                         (<span className="true">{m}</span>) :
-                         (<span className="false">{m}</span>)
+                        (<span className="true">{m}</span>) :
+                        (<span className="false">{m}</span>)
                     }
                 />)}
                 </span>
